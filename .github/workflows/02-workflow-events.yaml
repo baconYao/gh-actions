@@ -1,6 +1,9 @@
 name: 02 Workflow events
 
-on: push
+on:
+    push:
+    pull_request:
+    workflow_dispatch:
 
 jobs:
     echo:
