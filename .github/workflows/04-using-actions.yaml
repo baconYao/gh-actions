@@ -1,0 +1,21 @@
+name: 04 - Using Action
+
+on: push
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: 04-using-actions/react-app
+        steps: # 0. Checkout the code from the repository
+            - name: Checkout code
+              uses: actions/checkout@v5
+            - name: Setup Node
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 24
+            - name: Install Dependencies # 1. Install deps of our react app
+              run: npm ci
+            - name: Run Unit Tests # 2. Execute automated tests
+              run: npm run test
