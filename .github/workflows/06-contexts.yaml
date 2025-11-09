@@ -1,8 +1,14 @@
 name: 06 - Contexts
+run-name: 06 - Contexts | DEBUG ${{inputs.debug }}
 
 on:
     push:
     workflow_dispatch:
+        inputs:
+            debug:
+                description: "Debug flag"
+                type: boolean
+                default: false
 
 jobs:
     echo-data:
