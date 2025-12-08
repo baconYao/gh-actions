@@ -1,0 +1,20 @@
+name: Verify Nested Virtualization
+
+on:
+    workflow_dispatch:
+
+jobs:
+    kvm-check:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check /dev/kvm
+              run: |
+                  ls -l /dev/kvm || echo "/dev/kvm not found"
+
+            - name: Check CPU virtualization flags
+              run: |
+                  lscpu | grep -E "vmx|svm" || echo "No virtualization flags"
+
+            - name: dmesg check for kvm
+              run: |
+                  dmesg | grep kvm || echo "No kvm modules loaded"
